@@ -18,7 +18,7 @@
 - TypeScript, ESLint and production build passed during implementation; final run recorded in the handoff.
 - 21 unit tests and 19 retained PostgreSQL integration tests passed.
 - 10 Firebase emulator tests passed, including simultaneous capacity and helper acceptance, privacy, approval, discussion, requests and circles.
-- Desktop/mobile signup, verification and onboarding passed. Hosting browser checks are being repaired and rerun; do not infer completion until final results.
+- Desktop/mobile signup, verification and onboarding passed. The final desktop browser run also passed hosting, attendee registration, two-user realtime messages and questions, protected joining details, and logout (2 tests passed). Mobile hosting is pending the final rerun.
 - Live cloud sign-in and two-user realtime have not been verified. Emulator evidence is distinct from cloud readiness.
 
 ## Unfinished
