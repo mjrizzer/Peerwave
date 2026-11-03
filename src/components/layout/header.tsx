@@ -35,21 +35,23 @@ export async function Header() {
           </Link>
         </Button>
       </div>
-      <details className="mobile-nav">
-        <summary aria-label="Open navigation">
-          <Menu />
-        </summary>
-        <nav>
-          {links}
-          <Link href={user ? "/dashboard" : "/auth/login"}>
-            {user ? "My learning" : "Log in"}
-          </Link>
-          <Link href={user ? "/host" : "/auth/signup"}>
-            {user ? "Host a session" : "Join the community"}
-          </Link>
-          <ThemeToggle />
-        </nav>
-      </details>
+      <div className="mobile-tools">
+        <ThemeToggle />
+        <details className="mobile-nav">
+          <summary aria-label="Open navigation">
+            <Menu />
+          </summary>
+          <nav>
+            {links}
+            <Link href={user ? "/dashboard" : "/auth/login"}>
+              {user ? "My learning" : "Log in"}
+            </Link>
+            <Link href={user ? "/host" : "/auth/signup"}>
+              {user ? "Host a session" : "Join the community"}
+            </Link>
+          </nav>
+        </details>
+      </div>
     </header>
   );
 }
