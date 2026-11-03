@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.env*
+!.env.example
+*.tsbuildinfo
+playwright-report/
+test-results/
+.supabase/
+.firebase/
+*-debug.log
+*-debug.*.log
+*service-account*.json
+*credentials*.json
+*.pem
+*.key
+firebase-export-*/
+.local/

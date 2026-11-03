@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn(){return request.auth != null && request.auth.token.email_verified == true;}
+  function sessionMember(id){return signedIn() && (get(/databases/$(database)/documents/sessions/$(id)).data.host_id == request.auth.uid || get(/databases/$(database)/documents/registrations/$(id + '_' + request.auth.uid)).data.status == 'approved');}
+  function circleMember(id){return signedIn() && (get(/databases/$(database)/documents/study_circles/$(id)).data.owner_id == request.auth.uid || get(/databases/$(database)/documents/circle_memberships/$(id + '_' + request.auth.uid)).data.status == 'approved');}
+  // Browsers subscribe only to timestamp invalidations. Content and mutations
+  // pass through the verified and authorized Next.js server boundary.
+  match /changes/{changeId} {
+   allow read: if changeId == 'doubts' || (signedIn() && 'user_id' in resource.data && resource.data.user_id == request.auth.uid) || ('session_id' in resource.data && sessionMember(resource.data.session_id)) || ('circle_id' in resource.data && circleMember(resource.data.circle_id));
+   allow write: if false;
+  }
+  match /{document=**} { allow read, write: if false; }
+ }
+}

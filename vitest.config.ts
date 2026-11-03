@@ -1,0 +1,15 @@
+import { defineConfig } from "vitest/config";
+import { fileURLToPath } from "node:url";
+export default defineConfig({
+  resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
+  test: {
+    include: [
+      "tests/unit/**/*.test.ts",
+      "tests/integration/**/*.test.ts",
+      "tests/firebase/**/*.test.ts",
+    ],
+    testTimeout: 60000,
+    hookTimeout: 60000,
+    fileParallelism: false,
+  },
+});
